@@ -109,7 +109,7 @@
 	</dependencyManagement>
 
 	<build>
-		<finalName> User_docker_app</finalName>
+		<finalName>app</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
