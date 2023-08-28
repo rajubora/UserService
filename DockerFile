@@ -1,8 +1,14 @@
-FROM openjdk:11
+# Use the official Alpine Linux image as the base image
+FROM adoptopenjdk/openjdk11:jdk-11.0.11_9-alpine-slim
 
-COPY target/User_docker_app.jar  /usr/app/
+# Set the working directory inside the container
+WORKDIR /app
 
-WORKDIR /user/app
+# Copy the compiled Spring Boot JAR file into the container
+COPY target/app.jar /app/app.jar
 
-ENTRYPOINT ["java", "-jar", "User_docker_app.jar"]
+# Expose the port that the Spring Boot application will run on
+EXPOSE 8080
 
+# Command to run the Spring Boot application
+CMD ["java", "-jar", "app.jar"]
