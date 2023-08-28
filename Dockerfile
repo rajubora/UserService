@@ -4,6 +4,14 @@ FROM adoptopenjdk/openjdk11:jdk-11.0.11_9-alpine-slim
 # Set the working directory inside the container
 WORKDIR /app
 
+# Copy the Maven project file to the container
+COPY pom.xml .
+
+# Build the project using Maven and skip tests
+RUN apk add --no-cache maven && \
+    mvn clean package -DskipTests && \
+    rm -rf /root/.m2
+
 # Copy the compiled Spring Boot JAR file into the container
 COPY target/app.jar /app/app.jar
 
